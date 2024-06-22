@@ -1,0 +1,49 @@
+.mozo-form {
+    margin-left: 450px;
+    margin-right: 100px;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .mozo-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .mozo-form input {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .mozo-form button {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  .mozo-form button[type="button"] {
+    background-color: #dc3545;
+  }
+  
+  .icon-button-add {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #007bff;
+  }
+  
+  button  {
+    background: none;
+    border: none;
+    margin-right: 5px;
+    cursor: pointer;
+  }
+  

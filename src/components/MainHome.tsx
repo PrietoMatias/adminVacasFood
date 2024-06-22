@@ -1,41 +1,40 @@
 import axios from 'axios'
-import {useState, useEffect} from 'react'
-import {URL, dateParser} from '../constants/constants.ts'
+import { useState, useEffect } from 'react'
+import { URL, dateParser } from '../constants/constants.ts'
 
-interface ApiResponse{
-    nombreReservacion:string;
-    apellidoReservacion:string;
-    fechaReservacion:string;
-    idMesas:number;
-    nombreSector:string;
+interface ApiResponse {
+  nombreReservacion: string;
+  apellidoReservacion: string;
+  fechaReservacion: string;
+  idMesas: number;
+  nombreSector: string;
 }
 const MainHome = () => {
-    const [datos, setDatos] = useState<ApiResponse[]>([])
+  const [datos, setDatos] = useState<ApiResponse[]>([])
 
-    const getData = async ():Promise<void>=>{
-        const response = await  axios.get(`${URL}/leer/reservaciones/sector`)
-        const data = await response.data
-        setDatos(data)
-    }
-useEffect(()=>{
+  const getData = async (): Promise<void> => {
+    const response = await axios.get(`${URL}/leer/reservaciones/sector`)
+    const data = await response.data
+    setDatos(data)
+  }
+  useEffect(() => {
     getData()
-},[])
+  }, [])
 
   return (
     <>
-    <table className='container'>
+      <table className='container'>
         <thead>
-            <tr>
-                <th>IdMesa</th>
-                <th>Sector</th>
-                <th>Reservacion</th>
-                <th>Fecha</th>
-                <th>Acciones</th>
-                <th></th>
-            </tr>
+          <tr>
+            <th>IdMesa</th>
+            <th>Sector</th>
+            <th>Reservacion</th>
+            <th>Fecha</th>
+            <th></th>
+          </tr>
         </thead>
         <tbody>
-        {datos.length > 0 ? (
+          {datos.length > 0 ? (
             datos.map((d) => (
               <tr key={d.idMesas}>
                 <td>{d.idMesas}</td>
@@ -52,7 +51,7 @@ useEffect(()=>{
             </tr>
           )}
         </tbody>
-    </table>
+      </table>
     </>
   )
 }
