@@ -30,7 +30,6 @@ useEffect(()=>{
                 <th>Sector</th>
                 <th>Reservacion</th>
                 <th>Fecha</th>
-                <th>Acciones</th>
                 <th></th>
             </tr>
         </thead>
