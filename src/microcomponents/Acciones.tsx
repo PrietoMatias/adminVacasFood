@@ -1,5 +1,6 @@
 import { useState } from "react";
 
+// despues modifco las Acciones
 
 const Acciones = () => {
     const [mostrar, setMostrar] = useState(false);
