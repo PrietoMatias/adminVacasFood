@@ -25,9 +25,9 @@ const MainReservaciones = () => {
     setDatos(data)
   }
 
-  const deleteReservacion = async (id: number) => {
+  const deleteReservacion = async (id: number):Promise<void> => {
     try {
-      await axios.delete(`${URL}/reservaciones/${id}`);
+      await axios.delete(`${URL}/eliminar/reservaciones/${id}`);
       setDatos(datos.filter((d) => d.idReservacion !== id));
     } catch (error) {
       console.error("Error deleting reservation", error);
@@ -45,13 +45,21 @@ const MainReservaciones = () => {
   const handleFiltroFecha = (event: React.ChangeEvent<HTMLInputElement>) => {
     setFiltroFecha(event.target.value);
   }
-
+  const formatFechaInput = (fecha: string): string => {
+    const partes = fecha.split('-');
+    return `${partes[2]}/${partes[1]}/${partes[0]}`;
+  };
+  
   const datosFiltrados = datos.filter((d) => {
+    const formattedFechaReservacion = dateParser(d.fechaReservacion);
+    const formattedFiltroFecha = formatFechaInput(filtroFecha); // Formatear filtroFecha
+  
     return (
       d.nombreReservacion.toLowerCase().includes(filtroNombre.toLowerCase()) &&
-      (filtroFecha === '' || d.fechaReservacion === filtroFecha)
+      (filtroFecha === '' || formattedFechaReservacion === formattedFiltroFecha)
     );
   });
+  
 
   const tab = <>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</>;
   const tab1 = <>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</>;

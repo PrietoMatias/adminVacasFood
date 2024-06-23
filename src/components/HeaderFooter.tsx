@@ -18,6 +18,7 @@ const FooterHome:React.FC<FooterHomeProps> = ({children}) => {
         <li><Link to={'/mozos'} className='#f44336 red-text'>Mozos</Link></li>
         <li><Link to={'/sectores'}className='#f44336 red-text'>Sectores</Link></li>
         <li><Link to={'/reservaciones'}className='#f44336 red-text'>Reservaciones</Link></li>
+        <li><Link to={'/mesas'}className='#f44336 red-text'>Mesas</Link></li>
       </ul>
     </div>
   </nav>

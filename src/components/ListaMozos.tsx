@@ -6,6 +6,7 @@ import '../styles/estilos.css';
 interface ApiMozos {
   idMozo: number;
   nombreMozo: string;
+  apellidoMozo: string;
   telefonoMozo: string;
   mailMozo: string;
   idSector: number;
@@ -13,11 +14,12 @@ interface ApiMozos {
 
 const MainMozos = () => {
   const [datos, setDatos] = useState<ApiMozos[]>([
-    { idMozo: 1, nombreMozo: 'Juan Perez', telefonoMozo: '123456789', mailMozo: 'juan.perez@example.com', idSector: 1 }
+    { idMozo: 1, nombreMozo: 'Juan', apellidoMozo: 'Perez', telefonoMozo: '123456789', mailMozo: 'juan.perez@example.com', idSector: 1 }
   ]);
   const [nuevoMozo, setNuevoMozo] = useState<ApiMozos>({
     idMozo: 0,
     nombreMozo: '',
+    apellidoMozo:'',
     telefonoMozo: '',
     mailMozo: '',
     idSector: 0,
@@ -46,14 +48,14 @@ const MainMozos = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (editando) {
-      await axios.put(`${URL}/editar/mozo/${nuevoMozo.idMozo}`, nuevoMozo);
+      await axios.put(`${URL}/actualizar/mozos${nuevoMozo.idMozo}`, nuevoMozo);
       setDatos((prevDatos) =>
         prevDatos.map((mozo) =>
           mozo.idMozo === nuevoMozo.idMozo ? nuevoMozo : mozo
         )
       );
     } else {
-      const response = await axios.post(`${URL}/agregar/mozo`, nuevoMozo);
+      const response = await axios.post(`${URL}/insertar/mozos`, nuevoMozo);
       const mozoAgregado = await response.data;
       setDatos((prevDatos) => [...prevDatos, mozoAgregado]);
     }
@@ -61,6 +63,7 @@ const MainMozos = () => {
     setNuevoMozo({
       idMozo: 0,
       nombreMozo: '',
+      apellidoMozo: '',
       telefonoMozo: '',
       mailMozo: '',
       idSector: 0,
@@ -69,7 +72,7 @@ const MainMozos = () => {
   };
 
   const handleDelete = async (id: number) => {
-    await axios.delete(`${URL}/borrar/mozo/${id}`);
+    await axios.delete(`${URL}/eliminar/mozos/${id}`);
     setDatos((prevDatos) => prevDatos.filter((mozo) => mozo.idMozo !== id));
   };
 
@@ -100,6 +103,7 @@ const MainMozos = () => {
                   setNuevoMozo({
                     idMozo: 0,
                     nombreMozo: '',
+                    apellidoMozo: '',
                     telefonoMozo: '',
                     mailMozo: '',
                     idSector: 0,
@@ -145,7 +149,16 @@ const MainMozos = () => {
             name="nombreMozo"
             value={nuevoMozo.nombreMozo}
             onChange={handleChange}
-            placeholder="Nombre Completo"
+            placeholder="Nombre"
+            required
+            autoComplete='off'
+          />
+          <input
+            type="text"
+            name="apellidoMozo"
+            value={nuevoMozo.apellidoMozo}
+            onChange={handleChange}
+            placeholder="Apellido"
             required
             autoComplete='off'
           />

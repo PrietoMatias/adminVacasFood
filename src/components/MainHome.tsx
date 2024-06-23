@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { useState, useEffect } from 'react'
 import { URL, dateParser } from '../constants/constants.ts'
+import '../styles/estilos.css'
 
 interface ApiResponse {
   nombreReservacion: string;
@@ -30,7 +31,7 @@ const MainHome = () => {
             <th>Sector</th>
             <th>Reservacion</th>
             <th>Fecha</th>
-            <th></th>
+            <th> <button >Asignar</button></th>
           </tr>
         </thead>
         <tbody>
