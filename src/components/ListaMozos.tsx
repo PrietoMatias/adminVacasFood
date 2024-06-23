@@ -111,7 +111,7 @@ const MainMozos = () => {
     <div className="filters">
         <input
           type="text"
-          placeholder="Buscar por nombre o sector"
+          placeholder="Buscar por nombre o id"
           value={filtro}
           onChange={handleFiltroChange}
         />
