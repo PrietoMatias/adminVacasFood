@@ -14,7 +14,15 @@ interface ApiMozos {
 
 const MainMozos = () => {
   const [datos, setDatos] = useState<ApiMozos[]>([
-    { idMozo: 1, nombreMozo: 'Juan', apellidoMozo: 'Perez', telefonoMozo: '123456789', mailMozo: 'juan.perez@example.com', idSector: 1 }
+    { idMozo: 1, nombreMozo: 'Juan', apellidoMozo: 'Perez', telefonoMozo: '123456789', mailMozo: 'juan.perez@example.com', idSector: 1 },
+    { 
+      idMozo: 2,
+      nombreMozo: 'Pedro',
+      apellidoMozo: 'Garcia',
+      telefonoMozo: '987654321',
+      mailMozo: 'pedro.garcia@example.com',
+      idSector: 2,
+    }
   ]);
   const [nuevoMozo, setNuevoMozo] = useState<ApiMozos>({
     idMozo: 0,
@@ -26,6 +34,9 @@ const MainMozos = () => {
   });
   const [mostrarFormulario, setMostrarFormulario] = useState<boolean>(false);
   const [editando, setEditando] = useState<boolean>(false);
+
+  const [filtro,setFiltro] = useState<string>("");
+
 
   const getData = async (): Promise<void> => {
     const response = await axios.get(`${URL}/leer/mozos`);
@@ -82,16 +93,37 @@ const MainMozos = () => {
     setEditando(true);
   };
 
+  const handleFiltroChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setFiltro(event.target.value);
+  };
+
+  const datosFiltrados = datos.filter((d) => {
+    return (
+      d.nombreMozo.toLowerCase().includes(filtro.toLowerCase()) ||
+      d.idMozo.toFixed().includes(filtro.toLowerCase())
+    );
+  });
+
+  const tab = <>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</>;
+
   return (
     <>
+    <div className="filters">
+        <input
+          type="text"
+          placeholder="Buscar por nombre o sector"
+          value={filtro}
+          onChange={handleFiltroChange}
+        />
+      </div>
       <table className="container">
         <thead>
           <tr>
-            <th>IdMozos</th>
+            <th>Id-Mozos</th>
             <th>Nombre Completo</th>
             <th>Telefono</th>
             <th>Correo</th>
-            <th>id sector</th>
+            <th>id-Sector</th>
             <th>Acciones</th>
             <th>
               <button
@@ -117,13 +149,13 @@ const MainMozos = () => {
         </thead>
         <tbody>
           {datos.length > 0 ? (
-            datos.map((d) => (
+            datosFiltrados.map((d) => (
               <tr key={d.idMozo}>
-                <td>{d.idMozo}</td>
+                <td>{tab}{d.idMozo}</td>
                 <td>{d.nombreMozo}</td>
                 <td>{d.telefonoMozo}</td>
                 <td>{d.mailMozo}</td>
-                <td>{d.idSector}</td>
+                <td>{tab}{d.idSector}</td>
                 <td>
                   <button onClick={() => handleEdit(d)} title="Editar">
                     <i className="fa-solid fa-pen-to-square fa-lg"></i>
