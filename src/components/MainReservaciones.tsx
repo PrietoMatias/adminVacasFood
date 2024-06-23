@@ -102,7 +102,7 @@ const MainReservaciones = () => {
             ))
           ) : (
             <tr>
-              <td colSpan={8}>No hay reservaciones por ahora</td>
+              <td colSpan={6}>No hay reservaciones registradas</td>
             </tr>
           )}
         </tbody>
