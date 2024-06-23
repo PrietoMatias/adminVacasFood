@@ -5,5 +5,27 @@ body {
   min-height: 100vh; /* Establece la altura mínima del cuerpo igual a la altura del viewport */
 }
   
+#btnElimReserv{
+  background-color: #e61111;
+  width: 80px;
+  color: black;
+  font-size: 1rem;
+  border-radius: 8px;
+}
 
-  
+#btnElimReserv:hover{
+  background-color: #aa2020;
+  color: white;
+  transition: 2.ms;
+}
+
+.filters {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
