@@ -1,0 +1,44 @@
+.containerForm{
+    margin: 100px;
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+}
+.formLogin{
+    width: 25%;
+    background-color: #333;
+    color: #ddd;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: black 10px 7px 30px;
+    h1{
+        font-size: 40px;
+    }
+    .usuario, .contra{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 10px;
+    }
+    .sesion{
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 10px;
+        button{
+            background-color: aquamarine;
+            padding: 10px;
+            border-radius: 10px;
+            font-family: sans-serif;
+        }
+        button:hover{
+            transform: translateY(-2px) translateX(-1px);
+            transition: 0.3s;
+        }
+    }
+    ::placeholder{
+        color: #ddd;
+    }
+    input{
+        color: #ddd;
+    }
+}
