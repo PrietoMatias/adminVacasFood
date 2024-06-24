@@ -57,7 +57,6 @@ const MainMozos = () => {
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
     if (editando) {
       await axios.put(`${URL}/actualizar/mozos${nuevoMozo.idMozo}`, nuevoMozo);
       setDatos((prevDatos) =>
