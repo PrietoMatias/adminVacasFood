@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import '../styles/login.css';
+import {URL} from '../constants/constants.ts'
 
 interface LoginProps {
     iniciar: () => void;
@@ -12,8 +13,8 @@ const Login: React.FC<LoginProps> = ({ iniciar }) => {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         
-        const response = await fetch('URL_DEL_SERVIDOR/login', {
-            method: 'POST',
+        const response = await fetch(`${URL}/loginadmin`, {
+            method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
             },
