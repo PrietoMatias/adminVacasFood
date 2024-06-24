@@ -31,7 +31,6 @@ const MainHome = () => {
             <th>Sector</th>
             <th>Reservacion</th>
             <th>Fecha</th>
-            <th> <button >Asignar</button></th>
           </tr>
         </thead>
         <tbody>
@@ -42,8 +41,6 @@ const MainHome = () => {
                 <td>{d.nombreSector}</td>
                 <td>{d.nombreReservacion} {d.apellidoReservacion}</td>
                 <td>{dateParser(d.fechaReservacion)}</td>
-                <td><button>Editar</button></td>
-                <td><button>Desocupar</button></td>
               </tr>
             ))
           ) : (
